@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+long long dp[91];  // 메모이제이션을 위한 배열
+
+// 피보나치 수를 구하는 재귀 함수
+long long fib(int n) {
+    if (n == 0) return 0;       // 기본값: F(0) = 0
+    if (n == 1) return 1;       // 기본값: F(1) = 1
+
+    if (dp[n] != -1) return dp[n];  // 이미 계산한 값이면 바로 반환
+
+    // 계산하지 않은 값이면 재귀 호출 후 저장
+    return dp[n] = fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // 배열을 -1로 초기화 (계산 여부 체크용)
+    for (int i = 0; i <= n; i++)
+        dp[i] = -1;
+
+    cout << fib(n) << endl;
+
+    return 0;
+}
